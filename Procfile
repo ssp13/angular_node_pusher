@@ -1,1 +1,1 @@
-web: nodejs pusher_server.js
+web: node pusher_server.js
