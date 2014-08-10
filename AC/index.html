@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+<head lang="en">
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <script data-require="jquery@2.1.1" data-semver="2.1.1" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+
+    <script  src="https://code.angularjs.org/1.2.20/angular.js" data-semver="1.2.20"></script>
+    <script src="app.js"></script>
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+
+<body ng-controller="MainCtrl">
+
+<div class="container">
+
+
+    <div class="row-mt">
+        <div class="col-md-4">
+            <p>Hello A/C!</p>
+            <select class="form-control" >
+                <option value="" disabled selected>Select your mode</option>
+                <option value="Cool">Cool</option>
+                <option value="Hot">Hot</option>
+            </select>
+            <div class="col-md-8">
+            </div>
+        </div>
+    </div>
+    <div class="row-mt">
+
+
+        <div class="col-md-9">
+            <div class="input-group">
+	<span class="input-group-btn">
+		<button class="btn btn-default glyphicon glyphicon-chevron-up form-control" type="button"
+                ng-click="model.tempPlus();"></button>
+	</span>
+	<span class="input-group-btn">
+		<button ng-click="model.tempMinus();" class="btn btn-default glyphicon glyphicon-chevron-down form-control" type="button"
+                ></button>
+	</span>
+                <input  ng-model="model.stemp" id="acTemp" value="25" min="16" max="30" step="1" class="form-control" />
+                <span class="input-group-addon">&deg;C</span>
+            </div>
+            <br />
+            <button class="btn btn-info btn-block"  ng-click="model.pwr('on');">ON</button>
+            <button class="btn btn-warning btn-block" ng-click="model.pwr('off');">OFF</button>
+            Temp:<span flash="">{{model.temp}} °C</span>
+            selected temp:{{model.stemp}}
+            {{model.select}}
+        </div>
+    </div>
+
+    <br />
+
+
+</div>
+
+
+{{model.powerMode}}
+
+<select ng-model="model.select">
+    <option ng-repeat="fanspeed in fanspeeds">{{fanspeed}}</option>
+</select>
+<div class="input-group">
+    <input  ng-model="model.radio" value="s" type="radio">sd
+
+</div>
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>#</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr >
+        <td ng-repeat="fanspeed in fanspeeds">
+            {{fanspeed}}
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+{{model.radio}}
+
+{{model}}
+
+</body>
+</html>
