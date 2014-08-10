@@ -172,5 +172,5 @@ app.provider('PusherService', function () {
 app.config(function(PusherServiceProvider) {
     PusherServiceProvider
         .setToken('599a9eb32ff37b5469f7')
-       // .setOptions({authEndpoint: "http://localhost/ffs/pusher_auth.php"});
+        .setOptions({authEndpoint: "http://localhost/ffs/pusher_auth.php"});
 });

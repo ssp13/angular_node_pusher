@@ -1,0 +1,27 @@
+{
+  "name": "angular_node_pusher",
+  "version": "0.0.1",
+  "description": "angular_nodejs",
+  "main": "pusher_server.js",
+  "dependencies": {
+    "express": "~4.8.2",
+    "pusher": "~1.0.0",
+    "logfmt": "~1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ssp13/angular_node_pusher.git"
+  },
+  "keywords": [
+    "pushernode"
+  ],
+  "author": "ssp",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ssp13/angular_node_pusher/issues"
+  }
+}
