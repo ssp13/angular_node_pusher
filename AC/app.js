@@ -28,7 +28,8 @@ app.controller('MainCtrl', function($scope,Pusher,$http) {
         pwr:function(state){
             this.powerMode=state;
 			if(state==="on"){
-		}$http.get('/api/get/on');
+$http.get('/api/get/on');
+		}
 			else if(state==="off"){
 		$http.get('/api/get/off');		
 		}        
