@@ -6,6 +6,7 @@
 
     <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+    <link href="style.css" rel="stylesheet">
 
     <script  src="https://code.angularjs.org/1.2.20/angular.js" data-semver="1.2.20"></script>
     <script src="app.js"></script>
@@ -17,11 +18,13 @@
 
 <body ng-controller="MainCtrl">
 
-<div class="container">
 
 
+<div style="position:absolute" >
+      <img src="1280x720-LOj.jpg" width="1650px">    
+      </div>
     <div class="row-mt">
-        <div class="col-md-4">
+        
             <p>Hello A/C!</p>
             <select class="form-control" >
                 <option value="" disabled selected>Select your mode</option>
@@ -30,7 +33,7 @@
             </select>
             <div class="col-md-8">
             </div>
-        </div>
+       
     </div>
     <div class="row-mt">
 
@@ -51,9 +54,9 @@
             <br />
             <button class="btn btn-info btn-block"  ng-click="model.pwr('on');">ON</button>
             <button class="btn btn-warning btn-block" ng-click="model.pwr('off');">OFF</button>
-            Temp:<span flash="">{{model.temp}} °C</span>
-            selected temp:{{model.stemp}}
-            {{model.select}}
+            Temp:<span flash>{{model.temp}} °C</span>
+            
+            
         </div>
     </div>
 
@@ -62,7 +65,7 @@
 
 </div>
 
-
+<!--
 {{model.powerMode}}
 
 <select ng-model="model.select">
@@ -91,7 +94,7 @@
 
 {{model.radio}}
 
-{{model}}
+{{model}}-->
 
 </body>
 </html>
