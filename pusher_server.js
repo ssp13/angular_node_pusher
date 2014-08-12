@@ -29,7 +29,7 @@ pusher.trigger('channel-1', 'test_event', { message: "hello world" });
 });
  app.get('/api/get/on',function(req,res){
   
-pusher.trigger('ac_channel', 'turnoff', { message: "on" });
+pusher.trigger('ac_channel', 'turnon', { message: "on" });
 res.send('sended ac_channel-turnoff');
 });   
 app.get('/api/get/off',function(req,res){
