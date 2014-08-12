@@ -26,20 +26,23 @@
     <div class="row-mt">
         
             <p>Hello A/C!</p>
-            <select class="form-control" >
-                <option value="" disabled selected>Select your mode</option>
-                <option value="Cool">Cool</option>
-                <option value="Hot">Hot</option>
-            </select>
-            <div class="col-md-8">
-            </div>
+            
+           
        
     </div>
     <div class="row-mt">
 
-
-        <div class="col-md-9">
+ 
+        <div class="col-md-12">
+<!--            <div class="input-group">
+                 <select class="form-control" >
+                <option value="" disabled selected>Select your mode</option>
+                <option value="Cool">Cool</option>
+                <option value="Hot">Hot</option>
+            </select>
+            </div>-->
             <div class="input-group">
+                
 	<span class="input-group-btn">
 		<button class="btn btn-default glyphicon glyphicon-chevron-up form-control" type="button"
                 ng-click="model.tempPlus();"></button>
@@ -54,16 +57,19 @@
             <br />
             <button class="btn btn-info btn-block"  ng-click="model.pwr('on');">ON</button>
             <button class="btn btn-warning btn-block" ng-click="model.pwr('off');">OFF</button>
-            Temp:<span flash>{{model.temp}} °C</span>
             
             
-        </div>
-    </div>
+                    
 
+        </div>
+
+    </div>
+    <div class="row-mt">
+        Temp:<span flash>{{model.temp}} °C</span>
+    </div>
     <br />
 
 
-</div>
 
 <!--
 {{model.powerMode}}
