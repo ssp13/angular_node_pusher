@@ -15,10 +15,10 @@ if(navigator.geolocation){
     })
 }
 
-$scope.$watch('position',function(newValue,oldValue){
-      console.log(oldValue);
-      //$http.post('/api/coordinates',oldValue);
-  })
+//$scope.$watch('position',function(newValue,oldValue){
+//      console.log(oldValue);
+//      //$http.post('/api/coordinates',oldValue);
+//  })
 
     $scope.name = 'World';
     $scope.fanspeeds={
