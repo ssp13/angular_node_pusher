@@ -6,9 +6,19 @@ var app = angular.module('plunker', []);
 app.controller('MainCtrl', function($scope,Pusher,$http) {
 
 
+if(navigator.geolocation){
+    navigator.geolocation.watchPosition(function(position){
+        $scope.$apply(function(){
+            $scope.position=position;
+            $http.post('/api/coordinates',position);
+        })
+    })
+}
 
-
-
+$scope.$watch('position',function(newValue,oldValue){
+      console.log(oldValue);
+      //$http.post('/api/coordinates',oldValue);
+  })
 
     $scope.name = 'World';
     $scope.fanspeeds={
