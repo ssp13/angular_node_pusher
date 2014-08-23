@@ -6,19 +6,22 @@ var app = angular.module('plunker', []);
 app.controller('MainCtrl', function($scope,Pusher,$http) {
 
 
-if(navigator.geolocation){
-    navigator.geolocation.watchPosition(function(position){
-        $scope.$apply(function(){
-            $scope.position=position;
-            $http.post('/api/coordinates',position);
-        })
-    })
-}
+function Position3(position){ //asychronous
+        $scope.position=position;
+        $scope.$apply();
+    }
+    if(navigator.geolocation){
+        navigator.geolocation.watchPosition(Position,error);
+    
+};
+//        $scope.$apply(function(){
+//            $scope.position=position;
+//            $http.post('/api/coordinates',position);
+//        })
+//    })
 
-//$scope.$watch('position',function(newValue,oldValue){
-//      console.log(oldValue);
-//      //$http.post('/api/coordinates',oldValue);
-//  })
+
+
 
     $scope.name = 'World';
     $scope.fanspeeds={
@@ -37,13 +40,13 @@ if(navigator.geolocation){
         radio:'',
         pwr:function(state){
             this.powerMode=state;
-			if(state==="on"){
-$http.get('/api/get/on');
+                if(state==="on"){
+                   $http.get('/api/get/on');
 		}
-			else if(state==="off"){
-		$http.get('/api/get/off');		
+		else if(state==="off"){
+                    $http.get('/api/get/off');		
 		}        
-			},
+            },
         tempPlus:function(){
             this.stemp++;
         },

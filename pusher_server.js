@@ -31,6 +31,7 @@ app.post('/api/coordinates',function(req,res){
    console.log(req.body);
     var pos=req.body;
     console.log(pos.coords.latitude);
+    res.end();
    // just call res.end(), or show as string on web
    
  });
