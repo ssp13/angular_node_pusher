@@ -6,21 +6,20 @@ var app = angular.module('plunker', []);
 app.controller('MainCtrl', function($scope,Pusher,$http) {
 
 
-function Position3(position){ //asychronous
-        $scope.position=position;
-        $scope.$apply();
+function getPosition(){
+        var deferred=$q.defer();
+            if($window.navigator.geolocation){
+                $window.navigator.geolocation.watchPosition(function(position){
+                deferred.resolve(position);
+            })
+        } return deferred.promise;
     }
-    if(navigator.geolocation){
-        navigator.geolocation.watchPosition(Position,error);
     
-};
-//        $scope.$apply(function(){
-//            $scope.position=position;
-//            $http.post('/api/coordinates',position);
-//        })
-//    })
-
-
+    var promise=getPosition();
+    promise.then(function(position){
+        $scope.position=position;
+         $http.post('http://ec2-54-72-56-70.eu-west-1.compute.amazonaws.com:5000/api/coordinates',position);
+    })
 
 
     $scope.name = 'World';
