@@ -7,7 +7,8 @@
     "express": "~4.8.2",
     "pusher": "~1.0.0",
     "logfmt": "~1.1.2",
-    "firebase": "~1.0.19"
+    "firebase": "~1.0.19",
+    "cors": "~2.4.1"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,6 +1,7 @@
 var express = require('express');
 var Pusher = require('pusher');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var app=express();
 var Firebase=require('firebase');
 var pusher = new Pusher({
@@ -10,14 +11,15 @@ var pusher = new Pusher({
 }); 
 
 var myFirebaseRef = new Firebase("https://crackling-fire-1603.firebaseio.com/");
-app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-  
-  next();
- });
+//app.all('*', function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+//  
+//  next();
+// });
  app.use(bodyParser.urlencoded({ extended: false }));
+ app.use(cors);
 
 // parse application/json
 app.use(bodyParser.json());
