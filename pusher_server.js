@@ -1,7 +1,7 @@
 var express = require('express');
 var Pusher = require('pusher');
 var bodyParser = require('body-parser');
-var cors = require('cors');
+//var cors = require('cors');
 var app=express();
 var Firebase=require('firebase');
 var pusher = new Pusher({
@@ -21,7 +21,7 @@ app.all('*', function(req, res, next) {
   next();
  });
  app.use(bodyParser.urlencoded({ extended: false }));
- app.use(cors);
+ //app.use(cors);
 
 // parse application/json
 app.use(bodyParser.json());
