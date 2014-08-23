@@ -10,7 +10,7 @@ if(navigator.geolocation){
     navigator.geolocation.watchPosition(function(position){
         $scope.$apply(function(){
             $scope.position=position;
-            $http.post('/api/coordinates',position);
+            $http.get('/api/coordinates',position);
         })
     })
 }
