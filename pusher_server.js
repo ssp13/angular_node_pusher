@@ -1,6 +1,7 @@
 var express = require('express');
 var Pusher = require('pusher');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var app=express();
 var Firebase=require('firebase');
 var pusher = new Pusher({
@@ -10,6 +11,7 @@ var pusher = new Pusher({
 }); 
 
 var myFirebaseRef = new Firebase("https://crackling-fire-1603.firebaseio.com/");
+<<<<<<< HEAD
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,6 +21,7 @@ app.all('*', function(req, res, next) {
   next();
  });
  app.use(bodyParser.urlencoded({ extended: false }));
+ app.use(cors);
 
 // parse application/json
 app.use(bodyParser.json());
@@ -31,6 +34,7 @@ app.post('/api/coordinates',function(req,res){
 	    console.log(req.body);
     var pos=req.body;
     console.log(pos.coords.latitude);
+
     
 	var position={
 	lat:pos.coords.latitute,
@@ -62,7 +66,7 @@ app.post('/api/coordinates',function(req,res){
   
     res.end();  
 
- // just call res.end(), or show as string on web
+ 
    
  });
  var logger = function(req, res, next) {
