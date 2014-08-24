@@ -1,28 +1,80 @@
 /**
  * Created by ssp on 10/8/2014.
  */
+
+        
 var app = angular.module('plunker', []);
 
-app.controller('MainCtrl', function($scope,Pusher,$http) {
+app.controller('MainCtrl', function($scope,Pusher,$http,$q,$window) {
 
-
-function getPosition(){
+    function getPosition(){
         var deferred=$q.defer();
             if($window.navigator.geolocation){
-                $window.navigator.geolocation.watchPosition(function(position){
-                deferred.resolve(position);
-            })
-        } return deferred.promise;
-    }
+                 $window.navigator.geolocation.watchPosition(function(position){
+                    deferred.resolve(position);
+                },function(error){
+                    deferred.reject(error);
+                });
+                }    
+        return deferred.promise;
+        }
+   
+    $scope.getDistance=function getDistance(lat1,lon1,lat2,lon2){
+	        
+        var R = 6371; // Radius of the earth in km
+ 	var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+ 	var dLon = (lon2-lon1).toRad(); 
+ 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2); 
+  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  	var d = R * c; // Distance in km
+ 	return d;
+    };
+ 	/** Converts numeric degrees to radians */
+        if (typeof(Number.prototype.toRad) === "undefined") {
+            Number.prototype.toRad = function() {
+            return this * Math.PI / 180;
+            }
+        };
+            
+    var homePos=function(position){
+        this.lat=position.coords.latitude;
+        this.lon=position.coords.longitude;
+        this.accuracy=position.coords.accuracy;
+    };
     
+    var Pos=function(position){
+        this.lat=position.coords.latitude;
+        this.lon=position.coords.longitude;
+        this.accuracy=position.coords.accuracy;
+    };
+    
+    $scope.home=new homePos({coords:{latitude:23,longitude:34}});
     var promise=getPosition();
+    
     promise.then(function(position){
-        $scope.position=position;
-         $http.post('http://ec2-54-72-56-70.eu-west-1.compute.amazonaws.com:5000/api/coordinates',position);
-    })
-
-
-    $scope.name = 'World';
+        
+        $scope.position=new Pos(position);
+        $scope.distance=$scope.getDistance($scope.position.lat,$scope.position.lon,Number($scope.home.lat),$scope.home.lon);
+        $scope.w();
+        $http.post('http://ec2-54-72-56-70.eu-west-1.compute.amazonaws.com:5000/api/coordinates',position);
+    },function(error){
+        console.log(error);
+    });
+    
+    $scope.w=function(){
+        $scope.$watch(function(){
+        return $scope.home.lat;
+        },function(newValue){
+            if(newValue){
+             $scope.distance=$scope.getDistance($scope.position.lat,$scope.position.lon,Number($scope.home.lat),$scope.home.lon);
+            }
+        }); 
+    };      
+ 
+      
+  
     $scope.fanspeeds={
         low:"low",
         medium:"medium",
@@ -52,7 +104,7 @@ function getPosition(){
         tempMinus:function(){
             this.stemp--;
         }
-    }
+    };
 
 
 
